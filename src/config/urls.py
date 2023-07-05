@@ -19,3 +19,7 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+
+admin.site.site_header = 'Whatsapp API'
+admin.site.index_title = 'Manage The Whatsapp API Site'
