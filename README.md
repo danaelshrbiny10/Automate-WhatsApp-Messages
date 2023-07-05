@@ -1,12 +1,7 @@
 # Automate-WhatsApp-Messages
 
-This project aims to provide a way to automate sending WhatsApp messages to contacts and groups using the pywhatkit library in Python.
+This project aims to provide a way to automate sending WhatsApp messages to contacts and groups using Python.
 
-## Features
-
-* Send messages to individual contacts.
-* Send messages to groups.
-* Specify the time at which the message should be sent.
 
 ## Installation
 
@@ -25,10 +20,10 @@ git clone https://github.com/danaelshrbiny10/Automate-WhatsApp-Messages.git
 pip install virtualenv
 
 # Create a virtual environment
-virtualenv env
+virtualenv venv
 
 # Activate the virtual environment
-env/source/activate
+venv/source/activate
 
 ```
 
@@ -50,6 +45,8 @@ The application is built with the following technologies:
 
 - python 3.11
 - pywhatkit library
+- Django
+- Django Rest Framework
 
 ## License Information
 
