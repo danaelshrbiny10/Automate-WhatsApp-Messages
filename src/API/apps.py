@@ -1,9 +1,8 @@
-"""Whatsapp API App Apps."""
-
+"""API App Apps."""
 
 from django.apps import AppConfig
 
 
-class WhatsappApiConfig(AppConfig):
+class APIConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'whatsapp_api'
+    name = 'API'

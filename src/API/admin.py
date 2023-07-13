@@ -1,7 +1,7 @@
-"""Whatsapp API App admin."""
+"""API App admin."""
 
 from django.contrib import admin
-from .models import Chat, Group
+from API.models import Chat, Group
 
 
 @admin.register(Chat)
