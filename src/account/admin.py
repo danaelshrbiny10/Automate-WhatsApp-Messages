@@ -10,12 +10,12 @@ from .models import Person
 class PersonAdmin(admin.ModelAdmin):
     """Admin class for Person model."""
 
-    list_display = ("user")
+    list_display = ("user",)
     fieldsets = (
         (
             "Person Information",
             {
-                "fields": ("user"),
+                "fields": ("user",),
             },
         ),
         (
