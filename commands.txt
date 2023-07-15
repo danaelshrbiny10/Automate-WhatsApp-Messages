@@ -1,5 +1,6 @@
-# celery run command
+## Celery commands 
 
+# celery run command
 celery -A config.celery worker --pool=solo -l info
 
 # ______________________________________________
@@ -16,3 +17,9 @@ python manage.py migrate django_celery_beat
 celery -A config beat -l info
 
 # ______________________________________________
+
+## Docker commands
+
+docker build -t whatsapp-api .
+docker compose up
+docker compose up --build

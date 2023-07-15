@@ -26,7 +26,9 @@ SECRET_KEY = "django-insecure-ru*b!&^j9@xm5ksm0*$t3mfx1p*r6pq1a+at_4@(_x*p^e4hqz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000","http://127.0.0.1:8000"]
+
 
 
 # Application definition
@@ -88,7 +90,7 @@ DATABASES = {
         "NAME": "Whatsapp API",
         "USER": "postgres",
         "PASSWORD": "1111",
-        "HOST": "127.0.0.1",
+        "HOST": "db", 
         "PORT": "5432",
     }
 }
