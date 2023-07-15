@@ -1,0 +1,18 @@
+# celery run command
+
+celery -A config.celery worker --pool=solo -l info
+
+# ______________________________________________
+
+# celery beat migrations 
+
+python manage.py migrate django_celery_beat zero
+python manage.py makemigrations django_celery_beat
+python manage.py migrate django_celery_beat
+
+# ______________________________________________
+
+# celery beat run command
+celery -A config beat -l info
+
+# ______________________________________________

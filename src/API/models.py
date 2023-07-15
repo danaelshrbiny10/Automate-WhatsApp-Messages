@@ -25,7 +25,7 @@ class Chat(TimeStampedModel):
     last_messaged_time = models.DateTimeField(blank=True, null=True)
     unread_messages_count = models.IntegerField(default=0)
 
-    def __str__(self):
+    def __str__(self)  -> str:
         """Override the default string representation of an instance of the model."""
         return self.name
 
@@ -66,7 +66,7 @@ class Group(TimeStampedModel):
         default=False, verbose_name="Allow Anonymous Users to Join?"
     )
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Override the default string representation of an instance of the model."""
         return self.title
 

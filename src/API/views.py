@@ -1,10 +1,11 @@
-"""accouAPInts App views."""
+"""API App views."""
 
 from rest_framework import mixins, generics
 from API.models import Chat, Group
 from .serializers import ChatSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from .tasks import process_chat
 
 
 class ChatListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
@@ -23,7 +24,12 @@ class ChatListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
         return self.queryset.all()
 
     def get(self, request, *args, **kwargs):
-        """send GET request."""
+        """Send GET request."""
+        queryset = self.get_queryset()
+
+        for chat in queryset:
+            process_chat.delay(chat.id)
+
         return self.list(request, *args, **kwargs)
 
 
@@ -37,5 +43,5 @@ class ChatDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        """send GET request."""
+        """Send GET request."""
         return self.retrieve(request, *args, **kwargs)
