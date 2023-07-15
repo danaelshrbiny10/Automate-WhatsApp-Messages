@@ -34,7 +34,7 @@ dockerpty==0.4.1
 docopt==0.6.2
 drf-yasg==1.21.6
 idna==3.4
-importlib-metadata==6.7.0
+importlib-metadata==6.8.0
 inflection==0.5.1
 itypes==1.2.0
 Jinja2==3.1.2
