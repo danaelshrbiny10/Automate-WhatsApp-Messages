@@ -13,8 +13,8 @@ class ChatListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
 
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """Override get queryset method."""
@@ -39,8 +39,8 @@ class ChatDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
     lookup_field = "pk"
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         """Send GET request."""

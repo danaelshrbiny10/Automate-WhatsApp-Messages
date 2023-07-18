@@ -15,7 +15,7 @@ services:
       - DB_NAME='Whatsapp_API'
       - DB_USER='postgres'
       - DB_PASSWORD='1111'
-      - DB_HOST='db'
+      - DB_HOST='127.0.0.1'
       - DB_PORT=5432
     volumes:
       - .:/app:rw

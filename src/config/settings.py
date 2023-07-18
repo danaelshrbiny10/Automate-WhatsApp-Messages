@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+
 from pathlib import Path
 
 
@@ -23,12 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-ru*b!&^j9@xm5ksm0*$t3mfx1p*r6pq1a+at_4@(_x*p^e4hqz"
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turfrom datetime import timedeltaned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["http://localhost:8000","http://127.0.0.1:8000"]
-
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000"]
 
 
 # Application definition
@@ -50,6 +50,17 @@ INSTALLED_APPS = [
     "django_celery_beat",
 ]
 
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -61,6 +72,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "config.urls"
+
 
 TEMPLATES = [
     {
@@ -90,7 +102,7 @@ DATABASES = {
         "NAME": "Whatsapp API",
         "USER": "postgres",
         "PASSWORD": "1111",
-        "HOST": "db", 
+        "HOST": "127.0.0.1",
         "PORT": "5432",
     }
 }
@@ -144,6 +156,12 @@ REST_FRAMEWORK = {
 }
 
 # SWAGGER SETTINGS
+
+WAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
+    }
+}
 
 SWAGGER_SETTINGS = {"USE_SESSION_AUTH": False}
 
