@@ -66,7 +66,7 @@ The API endpoints are documented using Swagger. To access the API documentation:
 python manage.py runserver
 ```
 
-2. Open your web browser and navigate to `http://localhost:8000/swagger/` or `http://localhost:8000/redoc/`
+2. Open your web browser and navigate to `http://localhost:8000/` or `http://localhost:8000/redoc/`
 
 
 ## Database Backend
