@@ -26,7 +26,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"dana\",\r\n  \"password\": \"1234567890\"\r\n}"
+							"raw": "{\r\n    \"username\": \"test##112\",\r\n    \"password\": \"pass**339900\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{url}}/account/register/",
@@ -40,10 +45,65 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"test##112\",\r\n    \"password\": \"pass**339900\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/account/register/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"account",
+										"register",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"User registered successfully.\"\r\n}"
+						}
+					]
 				},
 				{
 					"name": "token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Save token to environment\", function() {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"TOKEN\", jsonData.access);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -59,7 +119,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"dana\",\r\n  \"password\": \"1234567890\"\r\n}"
+							"raw": "{\r\n    \"username\": \"test##112\",\r\n    \"password\": \"pass**339900\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{url}}/account/token/",
@@ -73,16 +138,80 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"test##112\",\r\n    \"password\": \"pass**339900\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/account/token/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"account",
+										"token",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4OTgyMDUxOSwiaWF0IjoxNjg5NzM0MTE5LCJqdGkiOiI0ODIyYWU4YmIwYTE0YTMxYjBlY2RkOGQ3YjAwY2NhZCIsInVzZXJfaWQiOjR9.ndMgTZGn5wPL6RQ2ZCLewdoWaE8hOxmr19sxDAR60W8\",\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5NzM0NDE5LCJpYXQiOjE2ODk3MzQxMTksImp0aSI6ImNhMTFjZDc5ZmQ1NzRjM2M5NmE0YmFhNWFkNTdkZTZmIiwidXNlcl9pZCI6NH0.c5C4NDztM7S2hpzbl53Ge824RRXU98Bk3XBtUGIARp8\"\n}"
+						}
+					]
 				},
 				{
 					"name": "token refresh",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \r\n        \"danaa\"\r\n    ,\r\n    \"password\": \r\n        \"123456789\"\r\n    \r\n}\r\n"
+							"raw": "{\r\n    \"username\": \"test##112\",\r\n    \"password\": \"pass**339900\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{url}}/account/token/",
@@ -96,7 +225,56 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "token refresh",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"test##112\",\r\n    \"password\": \"pass**339900\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/account/token/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"account",
+										"token",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY4OTgyMTEwOCwiaWF0IjoxNjg5NzM0NzA4LCJqdGkiOiJmOWIxZGViOWVlZmI0NGMyYmQwYWUyNDIzMTk5MTFkNyIsInVzZXJfaWQiOjR9.JafVlUXDDNGUTeejStbMmrecRGZA1N6PBAe2N6ly5ZU\",\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5NzM1MDA4LCJpYXQiOjE2ODk3MzQ3MDgsImp0aSI6IjJiZmRjYjcwMWNlZjQyMjI4NTM0OTMwZGVmZmQzMzc3IiwidXNlcl9pZCI6NH0.CyuiBm57nafnFA5NnnGdGemlMzIBKRFv2Tqmag6FlBQ\"\n}"
+						}
+					]
 				},
 				{
 					"name": "token verify",
@@ -105,10 +283,64 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"token\": \"string\"\r\n}"
+							"raw": "{\r\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5NzM0NDE5LCJpYXQiOjE2ODk3MzQxMTksImp0aSI6ImNhMTFjZDc5ZmQ1NzRjM2M5NmE0YmFhNWFkNTdkZTZmIiwidXNlcl9pZCI6NH0.c5C4NDztM7S2hpzbl53Ge824RRXU98Bk3XBtUGIARp8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/account/api/token/verify/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"account",
+								"api",
+								"token",
+								"verify",
+								""
+							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "token verify",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5NzM0NDE5LCJpYXQiOjE2ODk3MzQxMTksImp0aSI6ImNhMTFjZDc5ZmQ1NzRjM2M5NmE0YmFhNWFkNTdkZTZmIiwidXNlcl9pZCI6NH0.c5C4NDztM7S2hpzbl53Ge824RRXU98Bk3XBtUGIARp8\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/account/api/token/verify/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"account",
+										"api",
+										"token",
+										"verify",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{}"
+						}
+					]
 				}
 			]
 		},
@@ -118,6 +350,16 @@
 				{
 					"name": "chat list",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -162,6 +404,16 @@
 				{
 					"name": "chat details",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
