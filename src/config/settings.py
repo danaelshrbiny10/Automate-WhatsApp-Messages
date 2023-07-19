@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "core",
     "API",
     "account",
+    "autoslug",
     "drf_yasg",
     "django_celery_results",
     "django_celery_beat",

@@ -465,13 +465,324 @@
 				{
 					"name": "group list",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hello World!\",\r\n    \"description\": \"group for programming\",\r\n    \"members\": [\r\n        3\r\n    ],\r\n    \"admin\": 2,\r\n    \"password\": \"14785236900\",\r\n    \"private\": true,\r\n    \"invite_only\": true,\r\n    \"allow_anonymous\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/API/groups/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"API",
+								"groups",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "group list",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Hello World!\",\r\n    \"description\": \"group for programming\",\r\n    \"members\": [\r\n        3\r\n    ],\r\n    \"admin\": 2,\r\n    \"password\": \"14785236900\",\r\n    \"private\": true,\r\n    \"invite_only\": true,\r\n    \"allow_anonymous\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/API/groups/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"API",
+										"groups",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 10,\n    \"title\": \"Hello World!\",\n    \"description\": \"group for programming\",\n    \"members\": [\n        3\n    ],\n    \"image\": null,\n    \"admin\": 2,\n    \"slug\": \"hello-world\",\n    \"password\": \"14785236900\",\n    \"private\": true,\n    \"invite_only\": true,\n    \"allow_anonymous\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "group list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{url}}/API/groups/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"API",
+								"groups",
+								""
+							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "group list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/API/groups/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"API",
+										"groups",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"count\": 2,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": 1,\n            \"title\": \"group1\",\n            \"description\": \"test group\",\n            \"members\": [\n                3\n            ],\n            \"image\": null,\n            \"admin\": 1,\n            \"slug\": \"\",\n            \"password\": \"12345678900\",\n            \"private\": true,\n            \"invite_only\": true,\n            \"allow_anonymous\": true\n        },\n        {\n            \"id\": 10,\n            \"title\": \"Hello World!\",\n            \"description\": \"group for programming\",\n            \"members\": [\n                3\n            ],\n            \"image\": null,\n            \"admin\": 2,\n            \"slug\": \"hello-world\",\n            \"password\": \"14785236900\",\n            \"private\": true,\n            \"invite_only\": true,\n            \"allow_anonymous\": true\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "group details",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "group details",
+							"originalRequest": {
+								"method": "GET",
+								"header": []
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "group details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Hello, World!\",\r\n    \"description\": \"group for programming\",\r\n    \"members\": [\r\n        3\r\n    ],\r\n    \"admin\": 1,\r\n    \"password\": \"##55*6qpodf\",\r\n    \"private\": true,\r\n    \"invite_only\": true,\r\n    \"allow_anonymous\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/API/groups/1/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"API",
+								"groups",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "group details",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Hello, World!\",\r\n    \"description\": \"group for programming\",\r\n    \"members\": [\r\n        3\r\n    ],\r\n    \"admin\": 1,\r\n    \"password\": \"##55*6qpodf\",\r\n    \"private\": true,\r\n    \"invite_only\": true,\r\n    \"allow_anonymous\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/API/groups/1/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"API",
+										"groups",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"title\": \"Hello, World!\",\n    \"description\": \"group for programming\",\n    \"members\": [\n        3\n    ],\n    \"image\": null,\n    \"admin\": 1,\n    \"slug\": \"hello-world-2\",\n    \"password\": \"##55*6qpodf\",\n    \"private\": true,\n    \"invite_only\": true,\n    \"allow_anonymous\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "group details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/API/groups/1/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"API",
+								"groups",
+								"1",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "group details",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/API/groups/1/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"API",
+										"groups",
+										"1",
+										""
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
 				}
 			]
 		}
