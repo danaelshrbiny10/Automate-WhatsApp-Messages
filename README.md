@@ -1,6 +1,6 @@
 # Automate-WhatsApp-Messages
 
-[![python](https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=yellow&color=darkblue)](https://www.python.org) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)   [![pydocstyle](https://img.shields.io/badge/pydocstyle-enabled-brown)](http://www.pydocstyle.org/en/stable/)
+[![python](https://img.shields.io/badge/Python-3.11-3776AB.svg?style=flat&logo=python&logoColor=yellow&color=darkblue)](https://www.python.org) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![pydocstyle](https://img.shields.io/badge/pydocstyle-enabled-brown)](http://www.pydocstyle.org/en/stable/)
 
 This project aims to provide a way to automate sending WhatsApp messages to contacts and groups using Python.
 
@@ -13,7 +13,7 @@ This project aims to provide a way to automate sending WhatsApp messages to cont
 - [Authentication](./README.md/#jwt-authentication)
 - [technologies](./README.md/#technologies)
 - [License Information](./README.md/#license-information)
-  
+
 ## Installation
 
 To get started with the Automate-WhatsApp-Messages project:
@@ -45,16 +45,15 @@ pip install -r requirements.txt
 
 ```
 
-## run project 
+## run project
+
 ```bash
 python manage.py runserver
 ```
 
-
-
 ## Usage
-You can use this [postman collection](https://www.postman.com/science-saganist-7786711/workspace/whatsapp-api/collection/13841690-010abb84-a671-4e85-9f60-a057728c6915?action=share&creator=13841690) to learn more about the API usage
 
+You can use this [postman collection](https://www.postman.com/science-saganist-7786711/workspace/whatsapp-api/collection/13841690-010abb84-a671-4e85-9f60-a057728c6915?action=share&creator=13841690) to learn more about the API usage
 
 ## API Documentation
 
@@ -67,7 +66,6 @@ python manage.py runserver
 ```
 
 2. Open your web browser and navigate to `http://localhost:8000/swagger/` or `http://localhost:8000/redoc/`
-
 
 ## Database Backend
 

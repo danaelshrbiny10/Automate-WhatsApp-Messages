@@ -1,5 +1,6 @@
 """API App views."""
 
+
 from rest_framework import mixins, generics
 from API.models import Chat, Group
 from .serializers import ChatSerializer
@@ -13,8 +14,8 @@ class ChatListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
 
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """Override get queryset method."""
@@ -24,13 +25,13 @@ class ChatListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
         return self.queryset.all()
 
     def get(self, request, *args, **kwargs):
-        """Send GET request."""
+        """Override list method."""
         queryset = self.get_queryset()
 
         for chat in queryset:
             process_chat.delay(chat.id)
 
-        return self.list(request, *args, **kwargs)
+        return super().list(request, *args, **kwargs)
 
 
 class ChatDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
@@ -39,8 +40,12 @@ class ChatDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
     lookup_field = "pk"
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def retrieve(self, request, *args, **kwargs):
+        """Override retrieve method."""
+        return super().retrieve(request, *args, **kwargs)
 
     def get(self, request, *args, **kwargs):
         """Send GET request."""
