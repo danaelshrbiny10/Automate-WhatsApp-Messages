@@ -1,15 +1,9 @@
 version: 2
 updates:
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "daily"
+version: 2
+updates:
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "daily"
-    ignore:
-      - dependency-name: '*'
-        update-types:
-          - 'version-update:semver-major'
-          - 'version-update:semver-minor'
+    open-pull-requests-limit: 5
