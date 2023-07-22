@@ -22,6 +22,8 @@ celery -A config beat -l info
 
 docker build -t whatsapp-api .
 docker compose up
-docker compose up --build
+docker-compose down
+docker-compose up --build
+
 
 docker info

@@ -1,9 +1,9 @@
 """Django settings for config/settings/base.py project."""
 
 
+from datetime import timedelta
 from pathlib import Path
 import os
-import sys
 from dotenv import load_dotenv
 
 
@@ -21,9 +21,6 @@ load_dotenv()
 """ Build paths inside the project like this: BASE_DIR / 'subdir'."""
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# src/
-sys.path.append(BASE_DIR / "src")
 
 # ______________________________________________________________________________
 # DEBUG SETTINGS
@@ -59,12 +56,12 @@ USE_TZ = True
 
 DATABASES = {
     "default": {
-        "ENGINE": os.getenv("ENGINE"),
-        "NAME": os.getenv("NAME"),
-        "USER": os.getenv("USER"),
-        "PASSWORD": os.getenv("PASSWORD"),
-        "HOST": os.getenv("HOST"),
-        "PORT": os.getenv("PORT"),
+        'ENGINE': os.getenv('ENGINE'),
+        'NAME': os.getenv('NAME'),
+        'USER': os.getenv('USER'),
+        'PASSWORD': os.getenv('PASSWORD'),
+        'HOST': '127.0.0.1',  
+        'PORT': os.getenv('DB_PORT', '5432')
     }
 }
 
@@ -245,13 +242,24 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CORS_URLS_REGEX = os.getenv("CORS_URLS_REGEX")
 
 # ______________________________________________________________________________
+# SECRET KEY SETTINGS
+# ______________________________________________________________________________
+
+"""
+https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+SECURITY WARNING: keep the secret key used in production secret!
+"""
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+# ______________________________________________________________________________
 # JWT AUTH SETTINGS
 # ______________________________________________________________________________
 
 JWT_AUTH = {
-    "JWT_SECRET_KEY": os.getenv("JWT_SECRET_KEY"),
-    "JWT_ALGORITHM": os.getenv("JWT_ALGORITHM"),
-    "JWT_EXPIRATION_DELTA": os.getenv("JWT_EXPIRATION_DELTA"),
-    "JWT_ALLOW_REFRESH": os.getenv("JWT_ALLOW_REFRESH"),
-    "JWT_REFRESH_EXPIRATION_DELTA": os.getenv("JWT_REFRESH_EXPIRATION_DELTA"),
+    "JWT_SECRET_KEY": SECRET_KEY,
+    "JWT_ALGORITHM": "HS256",
+    "JWT_EXPIRATION_DELTA": timedelta(days=1),
+    "JWT_ALLOW_REFRESH": True,
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=7),
 }
