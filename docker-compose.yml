@@ -12,11 +12,18 @@ services:
     depends_on:
       - db
     environment:
-      - DB_NAME='Whatsapp_API'
-      - DB_USER='postgres'
-      - DB_PASSWORD='1111'
-      - DB_HOST='127.0.0.1'
-      - DB_PORT=5432
+      - DJANGO_SETTINGS_MODULE=config.settings.base  
+      - POSTGRES_DB=${NAME}
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - DB_HOST=${HOST}
+      - DB_PORT=${PORT}
+      - JWT_SECRET_KEY: "SECRET_KEY"
+      - JWT_ALGORITHM: "HS256"
+      - JWT_EXPIRATION_DELTA: "timedelta(days=1)"
+      - JWT_ALLOW_REFRESH: "True"
+      - JWT_REFRESH_EXPIRATION_DELTA: "timedelta(days=7)"
+
     volumes:
       - .:/app:rw
       - server_static:/app/src/static:rw
@@ -29,6 +36,6 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB='Whatsapp_API'
-      - POSTGRES_USER='postgres'
-      - POSTGRES_PASSWORD='1111'
+      - POSTGRES_DB=${NAME}
+      - POSTGRES_USER=${USER}
+      - POSTGRES_PASSWORD=${PASSWORD}
