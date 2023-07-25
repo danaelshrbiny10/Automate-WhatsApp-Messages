@@ -17,7 +17,7 @@ services:
     volumes:
       - .:/app:rw
       - server_static:/app/src/static:rw
-    command: bash -c "python src/manage.py migrate && cd src && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    command: bash -c "python src/manage.py migrate && cd src && gunicorn config.wsgi:application --bind 127.0.0.1:8000"
   db:
     image: postgres
     ports:

@@ -27,3 +27,12 @@ docker-compose up --build
 
 
 docker info
+
+
+docker-compose run web python src/manage.py makemigrations
+docker-compose run web python src/manage.py migrate
+docker-compose run web python src/manage.py showmigrations
+
+
+docker compose run web python src/manage.py createsuperuser
+docker compose logs
