@@ -36,3 +36,10 @@ docker-compose run web python src/manage.py showmigrations
 
 docker compose run web python src/manage.py createsuperuser
 docker compose logs
+
+
+# Remove stopped containers
+docker container prune
+
+# Remove unused images
+docker image prune

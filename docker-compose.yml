@@ -2,6 +2,7 @@ version: '3'
 volumes:
   db_data: {}
   server_static: {}
+
 services:
   web:
     build:
@@ -11,13 +12,15 @@ services:
       - db
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.base
-      - POSTGRES_HOST=127.0.0.1
     env_file:
       - .env
     volumes:
       - .:/app:rw
       - server_static:/app/src/static:rw
-    command: bash -c "python src/manage.py migrate && cd src && gunicorn config.wsgi:application --bind 127.0.0.1:8000"
+    command: bash -c "python src/manage.py migrate && cd src && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    ports:
+      - '8000:8000'
+
   db:
     image: postgres
     ports:
@@ -26,6 +29,7 @@ services:
       - db_data:/var/lib/postgresql/data
     env_file:
       - .env
+
   nginx:
     image: nginx
     ports:

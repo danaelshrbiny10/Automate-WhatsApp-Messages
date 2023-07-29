@@ -39,4 +39,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1",'*']
 
 
-CSRF_TRUSTED_ORIGINS = ["https://*.127.0.0.1", "http://localhost:8000"]
+CSRF_TRUSTED_ORIGINS = ["https://*.127.0.0.1", "http://localhost:8000", "127.0.0.1:8000"]
+
+# ALLOWED_HOSTS = ["*"]
+# CSRF_TRUSTED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000"]
