@@ -3,7 +3,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from core.models import TimeStampedModel
-from autoslug import AutoSlugField
+from django.db.models.signals import pre_save
+from django.utils.text import slugify
 
 class Chat(TimeStampedModel):
     """Chat model for storing chat information in the database including details about the user, chat name, message content, timestamps, and unread message count.
@@ -58,7 +59,7 @@ class Group(TimeStampedModel):
     admin = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, related_name="admin_groups"
     )
-    slug = AutoSlugField(unique=True, populate_from='title')
+    slug = models.SlugField(unique=True)
     password = models.CharField(max_length=16, verbose_name="Password")
     private = models.BooleanField(default=False, verbose_name="Private")
     invite_only = models.BooleanField(default=False, verbose_name="Invite Only")
@@ -75,3 +76,11 @@ class Group(TimeStampedModel):
 
         verbose_name = "Group"
         verbose_name_plural = "Groups"
+
+    @staticmethod
+    def generate_slug(sender, instance, *args, **kwargs):
+        """Generate slug method is a static method defined within the Group model class."""
+        if not instance.slug:
+            instance.slug = slugify(instance.title)
+
+pre_save.connect(Group.generate_slug, sender=Group)

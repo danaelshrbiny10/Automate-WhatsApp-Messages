@@ -96,7 +96,6 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
-    "autoslug",
     "drf_yasg",
     "django_celery_results",
     "django_celery_beat",
@@ -163,7 +162,8 @@ MIDDLEWARE = [
 
 """https://docs.djangoproject.com/en/4.1/howto/static-files/"""
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = 'static'
 
 # ______________________________________________________________________________
 # TEMPLATES

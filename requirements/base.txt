@@ -19,7 +19,7 @@ cron-descriptor==1.4.0
 cryptography==41.0.2
 distro==1.8.0
 Django==4.2.2
-django-autoslug==1.9.8
+# django-autoslug==1.9.9
 django-celery-beat==2.5.0
 django-celery-results==2.5.1
 django-environ==0.9.0
@@ -48,7 +48,6 @@ paramiko==3.2.0
 Pillow==10.0.0
 prompt-toolkit==3.0.39
 psycopg2==2.9.4
-psycopg2-binary==2.9.4
 pycparser==2.21
 PyJWT==1.7.1
 PyNaCl==1.5.0
