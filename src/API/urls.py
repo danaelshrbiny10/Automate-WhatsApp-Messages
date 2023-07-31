@@ -12,6 +12,6 @@ from API.views import (
 urlpatterns = [
     path("chats/", ChatListAPIView.as_view(), name="chat_list_api"),
     path("chats/<int:pk>/", ChatDetailAPIView.as_view(), name="chat_detail_api"),
-    path("groups/", GroupListAPIView.as_view(), name="group-list"),
-    path("groups/<int:pk>/", GroupDetailAPIView.as_view(), name="group-detail"),
+    path("groups/", GroupListAPIView.as_view(), name="group_list"),
+    path("groups/<int:pk>/", GroupDetailAPIView.as_view(), name="group_detail"),
 ]
