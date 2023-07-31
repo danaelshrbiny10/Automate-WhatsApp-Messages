@@ -2,20 +2,21 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    - name: Install Python dependencies
-        run: pip install -r requirements/base.txt -r requirements/local.txt
+      - uses: actions/checkout@v3
 
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+      - name: Install Python dependencies
+        run: |
+          pip install --no-cache-dir -r requirements/base.txt
+          pip install --no-cache-dir -r requirements/local.txt
