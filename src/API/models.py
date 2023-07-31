@@ -6,6 +6,7 @@ from core.models import TimeStampedModel
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
 
+
 class Chat(TimeStampedModel):
     """Chat model for storing chat information in the database including details about the user, chat name, message content, timestamps, and unread message count.
 
@@ -26,7 +27,7 @@ class Chat(TimeStampedModel):
     last_messaged_time = models.DateTimeField(blank=True, null=True)
     unread_messages_count = models.IntegerField(default=0)
 
-    def __str__(self)  -> str:
+    def __str__(self) -> str:
         """Override the default string representation of an instance of the model."""
         return self.name
 
@@ -52,7 +53,7 @@ class Group(TimeStampedModel):
     allow_anonymous: This boolean field indicates whether anonymous users are allowed to join the group chat.
     """
 
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     description = models.TextField()
     members = models.ManyToManyField(User, related_name="user_groups", blank=True)
     image = models.ImageField(upload_to="images/", default="", null=True, blank=True)
@@ -82,5 +83,6 @@ class Group(TimeStampedModel):
         """Generate slug method is a static method defined within the Group model class."""
         if not instance.slug:
             instance.slug = slugify(instance.title)
+
 
 pre_save.connect(Group.generate_slug, sender=Group)

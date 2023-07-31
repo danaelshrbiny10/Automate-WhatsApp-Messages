@@ -56,12 +56,12 @@ USE_TZ = True
 
 DATABASES = {
     "default": {
-        'ENGINE': os.getenv('ENGINE'),
-        'NAME': os.getenv('NAME'),
-        'USER': os.getenv('USER'),
-        'PASSWORD': os.getenv('PASSWORD'),
-        'HOST': os.getenv('HOST', '127.0.0.1'),  
-        'PORT': os.getenv('PORT', '5432')
+        "ENGINE": os.getenv("ENGINE"),
+        "NAME": os.getenv("NAME"),
+        "USER": os.getenv("USER"),
+        "PASSWORD": os.getenv("PASSWORD"),
+        "HOST": os.getenv("HOST", "127.0.0.1"),
+        "PORT": os.getenv("PORT", "5432"),
     }
 }
 
@@ -163,7 +163,7 @@ MIDDLEWARE = [
 """https://docs.djangoproject.com/en/4.1/howto/static-files/"""
 
 STATIC_URL = "/static/"
-STATIC_ROOT = 'static'
+STATIC_ROOT = "static"
 
 # ______________________________________________________________________________
 # TEMPLATES
@@ -226,6 +226,9 @@ CELERY_RESULT_SERIALIZER = os.getenv("CELERY_RESULT_SERIALIZER")
 CELERY_TASK_SERIALIZER = os.getenv("CELERY_TASK_SERIALIZER")
 CELERY_TIMEZONE = os.getenv("CELERY_TIMEZONE")
 CELERY_REDIS_RETRY_DELAY = 5
+
+# Set Celery to use eager mode during testing
+CELERY_TASK_ALWAYS_EAGER = True
 
 # ______________________________________________________________________________
 # CELERY BEAT SETTINGS

@@ -31,6 +31,7 @@ class GroupSerializer(serializers.ModelSerializer):
             "allow_anonymous",
         ]
         read_only_fields = ["id", "slug"]
+        extra_kwargs = {"password": {"write_only": False, "required": False}}
 
     def create(self, validated_data):
         """Override create method to handle ManyToManyField 'members'."""

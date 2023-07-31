@@ -76,7 +76,9 @@ class GroupListAPIView(
         serializer.is_valid(raise_exception=True)
         group = serializer.save()
 
-        process_group.apply_async(args=[group.id], eta=timezone.now() + timedelta(seconds=10))
+        process_group.apply_async(
+            args=[group.id], eta=timezone.now() + timedelta(seconds=10)
+        )
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
