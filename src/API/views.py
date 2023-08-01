@@ -1,6 +1,6 @@
 """API App views."""
 
-
+import logging
 from datetime import timedelta
 from rest_framework import status
 from rest_framework.response import Response
@@ -11,6 +11,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .tasks import process_chat, process_group
 from django.utils import timezone
+from rest_framework.views import exception_handler
+
+logger = logging.getLogger(__name__)
 
 
 class ChatListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
@@ -33,7 +36,12 @@ class ChatListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
         queryset = self.get_queryset()
 
         for chat in queryset:
-            process_chat.delay(chat.id)
+            try:
+                process_chat.delay(chat.id)
+            except Exception as e:
+                logger.error(
+                    f"An error occurred while processing chat ID {chat.id}: {e}"
+                )
 
         return super().list(request, *args, **kwargs)
 
@@ -76,9 +84,12 @@ class GroupListAPIView(
         serializer.is_valid(raise_exception=True)
         group = serializer.save()
 
-        process_group.apply_async(
-            args=[group.id], eta=timezone.now() + timedelta(seconds=10)
-        )
+        try:
+            process_group.apply_async(
+                args=[group.id], eta=timezone.now() + timedelta(seconds=10)
+            )
+        except Exception as e:
+            logger.error(f"An error occurred while processing group ID {group.id}: {e}")
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -107,3 +118,15 @@ class GroupDetailAPIView(
     def delete(self, request, *args, **kwargs):
         """Send DELETE request to delete a specific group."""
         return self.destroy(request, *args, **kwargs)
+
+
+def custom_exception_handler(exc, context):
+    """Custom exception handler for API views."""
+    response = exception_handler(exc, context)
+
+    if response is not None:
+        logger.error(
+            f"An exception occurred: {exc}, status_code: {response.status_code}, data: {response.data}"
+        )
+
+    return response

@@ -154,6 +154,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "API.middleware.LogUnhandledExceptionMiddleware",
 ]
 
 # ______________________________________________________________________________
@@ -266,4 +267,39 @@ JWT_AUTH = {
     "JWT_EXPIRATION_DELTA": timedelta(days=1),
     "JWT_ALLOW_REFRESH": True,
     "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=7),
+}
+
+# ______________________________________________________________________________
+# Logging and Error Handling SETTINGS
+# ______________________________________________________________________________
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {"format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"},
+        "simple": {"format": "%(levelname)s %(message)s"},
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": "app.log",
+            "formatter": "standard",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "file"],
+            "level": "INFO",
+        },
+        "your_app_name": {
+            "handlers": ["console", "file"],
+            "level": "DEBUG",
+        },
+    },
 }
