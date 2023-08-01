@@ -1,7 +1,7 @@
 """API App admin."""
 
 from django.contrib import admin
-from API.models import Chat, Group
+from API.models import Chat, Group, Feedback
 
 
 @admin.register(Chat)
@@ -73,6 +73,38 @@ class GroupAdmin(admin.ModelAdmin):
                     "private",
                     "invite_only",
                     "allow_anonymous",
+                ),
+            },
+        ),
+        (
+            "Timestamps",
+            {
+                "fields": ("created_at", "updated_at"),
+            },
+        ),
+    )
+
+
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    """Admin class for Feedback model."""
+
+    list_display = (
+        "name",
+        "email",
+        "subject",
+        "message",
+    )
+    readonly_fields = ["created_at", "updated_at"]
+    fieldsets = (
+        (
+            "Chat Information",
+            {
+                "fields": (
+                    "name",
+                    "email",
+                    "subject",
+                    "message",
                 ),
             },
         ),

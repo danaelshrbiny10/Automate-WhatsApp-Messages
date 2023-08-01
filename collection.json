@@ -622,12 +622,34 @@
 							"name": "group details",
 							"originalRequest": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{url}}/API/groups/1/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"API",
+										"groups",
+										"1",
+										""
+									]
+								}
 							},
-							"_postman_previewlanguage": null,
-							"header": null,
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
 							"cookie": [],
-							"body": null
+							"body": "{\n    \"id\": 1,\n    \"title\": \"group1\",\n    \"description\": \"test group\",\n    \"members\": [\n        3\n    ],\n    \"image\": null,\n    \"admin\": 1,\n    \"slug\": \"\",\n    \"password\": \"12345678900\",\n    \"private\": true,\n    \"invite_only\": true,\n    \"allow_anonymous\": true\n}"
 						}
 					]
 				},
@@ -781,6 +803,153 @@
 							],
 							"cookie": [],
 							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Feedback",
+			"item": [
+				{
+					"name": "Feedback List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/API/feedback/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"API",
+								"feedback",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Feedback List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/API/feedback/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"API",
+										"feedback",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "Feedback List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"name\": \"user 1\",\r\n    \"email\": \"user@gmail.com\",\r\n    \"subject\": \"add a feedback\",\r\n    \"message\": \"Very beautiful site\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/API/feedback/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"API",
+								"feedback",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Feedback List",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"user 1\",\r\n    \"email\": \"user@gmail.com\",\r\n    \"subject\": \"add a feedback\",\r\n    \"message\": \"Very beautiful site\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/API/feedback/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"API",
+										"feedback",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n    \"id\": 1,\r\n    \"created_at\": \"2023-08-01T09:35:41.663247Z\",\r\n    \"updated_at\": \"2023-08-01T09:35:41.663247Z\",\r\n    \"name\": \"user 1\",\r\n    \"email\": \"user@gmail.com\",\r\n    \"subject\": \"add a feedback\",\r\n    \"message\": \"Very beautiful site\"\r\n}"
 						}
 					]
 				}

@@ -7,8 +7,9 @@ from datetime import timedelta
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import mixins, generics
-from API.models import Chat, Group
-from .serializers import ChatSerializer, GroupSerializer
+from API.models import Chat, Group, Feedback
+from .serializers import ChatSerializer, GroupSerializer, FeedbackSerializer
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .tasks import process_chat, process_group
@@ -134,3 +135,22 @@ def custom_exception_handler(exc, context):
         )
 
     return response
+
+
+
+class FeedbackAPIView(APIView):
+    """View to list user feedback."""
+
+    def get(self, request, *args, **kwargs):
+        """Retrieve a list of all feedbacks."""
+        feedback = Feedback.objects.all()
+        serializer = FeedbackSerializer(feedback, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, *args, **kwargs):
+        """Create a new feedbacks."""
+        serializer = FeedbackSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
