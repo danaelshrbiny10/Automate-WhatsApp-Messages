@@ -155,7 +155,26 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "API.middleware.LogUnhandledExceptionMiddleware",
+    "django.middleware.cache.UpdateCacheMiddleware",
+    "django.middleware.cache.FetchFromCacheMiddleware",
 ]
+
+# ______________________________________________________________________________
+# Caches Settings
+# ______________________________________________________________________________
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "unique-Automate_Whatsapp_API",
+        "TIMEOUT": 60 * 15,  # 15 minutes cache timeout
+    },
+}
+
+
+CACHE_MIDDLEWARE_SECONDS = 60 * 15  # 15 minutes cache timeout
+CACHE_MIDDLEWARE_ALIAS = "default"
 
 # ______________________________________________________________________________
 # Static files (CSS, JavaScript, Images)

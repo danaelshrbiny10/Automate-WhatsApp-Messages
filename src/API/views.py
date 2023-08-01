@@ -1,6 +1,7 @@
 """API App views."""
 
-import logging
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from datetime import timedelta
 from rest_framework import status
 from rest_framework.response import Response
@@ -12,6 +13,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .tasks import process_chat, process_group
 from django.utils import timezone
 from rest_framework.views import exception_handler
+
+import logging
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +34,7 @@ class ChatListAPIView(mixins.ListModelMixin, generics.GenericAPIView):
             return self.queryset.filter(name__icontains=name)
         return self.queryset.all()
 
+    @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, *args, **kwargs):
         """Override list method."""
         queryset = self.get_queryset()
@@ -55,13 +59,10 @@ class ChatDetailAPIView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def retrieve(self, request, *args, **kwargs):
-        """Override retrieve method."""
-        return super().retrieve(request, *args, **kwargs)
-
+    @method_decorator(cache_page(60 * 60))  # Cache for 1 hour
     def get(self, request, *args, **kwargs):
         """Send GET request."""
-        return self.retrieve(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
 
 class GroupListAPIView(
@@ -74,6 +75,7 @@ class GroupListAPIView(
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+    @method_decorator(cache_page(60 * 15))  # Cache for 15 minutes
     def get(self, request, *args, **kwargs):
         """Send GET request to list all groups."""
         return self.list(request, *args, **kwargs)
@@ -107,6 +109,7 @@ class GroupDetailAPIView(
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+    @method_decorator(cache_page(60 * 60))  # Cache for 1 hour
     def get(self, request, *args, **kwargs):
         """Send GET request to retrieve a specific group."""
         return self.retrieve(request, *args, **kwargs)
