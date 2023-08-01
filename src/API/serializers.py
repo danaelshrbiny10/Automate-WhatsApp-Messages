@@ -1,5 +1,6 @@
 """API App serializers."""
 
+from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from API.models import Chat, Group
 
@@ -14,6 +15,8 @@ class ChatSerializer(serializers.ModelSerializer):
 
 class GroupSerializer(serializers.ModelSerializer):
     """Serializer for the Group model."""
+
+    field1 = serializers.CharField(label=_("Field 1"))
 
     class Meta:
         model = Group
@@ -31,17 +34,17 @@ class GroupSerializer(serializers.ModelSerializer):
             "allow_anonymous",
         ]
         read_only_fields = ["id", "slug"]
-        extra_kwargs = {"password": {"write_only": False, "required": False}}
+        extra_kwargs = {"password": {"write_only": True, "required": False}}
 
     def create(self, validated_data):
-        """Override create method to handle ManyToManyField 'members'."""
+        """Handle ManyToManyField 'members' during creation."""
         members_data = validated_data.pop("members", [])
-        group = Group.objects.create(**validated_data)
+        group = super().create(validated_data)
         group.members.set(members_data)
         return group
 
     def update(self, instance, validated_data):
-        """Override update method to handle ManyToManyField 'members'."""
+        """Handle ManyToManyField 'members' during update."""
         members_data = validated_data.pop("members", None)
         group = super().update(instance, validated_data)
         if members_data is not None:

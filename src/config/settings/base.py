@@ -39,14 +39,21 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 """https://docs.djangoproject.com/en/4.1/topics/i18n/"""
 
-LANGUAGE_CODE = "en-us"
+LANGUAGES = [
+    ("en", "English"),
+    ("fr", "French"),
+    ("ar", "Arabic"),
+]
 
-TIME_ZONE = "UTC"
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+]
 
+LANGUAGE_CODE = "en"
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
-
+TIME_ZONE = "UTC"
 
 # ______________________________________________________________________________
 # DATABASE SETTINGS
@@ -157,24 +164,8 @@ MIDDLEWARE = [
     "API.middleware.LogUnhandledExceptionMiddleware",
     "django.middleware.cache.UpdateCacheMiddleware",
     "django.middleware.cache.FetchFromCacheMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
-
-# ______________________________________________________________________________
-# Caches Settings
-# ______________________________________________________________________________
-
-
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "unique-Automate_Whatsapp_API",
-        "TIMEOUT": 60 * 15,  # 15 minutes cache timeout
-    },
-}
-
-
-CACHE_MIDDLEWARE_SECONDS = 60 * 15  # 15 minutes cache timeout
-CACHE_MIDDLEWARE_ALIAS = "default"
 
 # ______________________________________________________________________________
 # Static files (CSS, JavaScript, Images)
